@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="bootstrap/favicon.ico">
+
+    <title>后台管理系统</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="bootstrap/dashboard.css" rel="stylesheet">
+</head>
+
+<!-- 添加背景色 style="background-color: #dff0d8" -->
+<body>
+
+    <div class="container">
+<!--  添加灰色背景 -->
+<div class="text-center mt-5">
+  <form id="loginid" class="form-signin" style="max-width:240px; margin:auto;">
+    <h1 class="h3 mb-3 font-weight-normal">欢迎使用本系统 <br/>请登录</h2>
+    <p>(本页面应有界面背景，或者logo图片) </p>
+    <p>TODO：周边加一个框</p>
+    <input type="name" id="username" name="username" class="form-control" placeholder="账号" required autofocus>
+    <div class="mt-3">
+    <input type="password" id="password" name="passwd" class="form-control" placeholder="密码" required>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" value="remember-me"> 记住我
+      </label>
+    </div>
+    <div class="mt-3">
+    <!-- 测试发现用 button url会出现参数，并且ajax传递参数有问题，用下面的可以，原因待研究 -->
+    <!-- <button id="mylogin111" class="btn btn-lg btn-info btn-block">登录</button> -->
+    <input id="mylogin" type="button" class="btn btn-lg btn-info btn-block" value="登陆">
+  </div>
+  </form>
+</div>
+  </div> <!-- /container -->
+    
+<!-- 
+<div class="container">
+
+<div class="row">
+<br/>
+<br/>
+<br/>
+</div>
+
+<div style="margin: 0px auto;display: table;">
+    <p class="lead">欢迎使用本系统</p>
+    此处或左侧应该有界面说明，或者logo图片
+    <div class="row">
+<br/>
+<br/>
+<br/>
+</div>
+    <form name="login">
+        <div class="input-group">
+            <span class="input-group-addon">账号</span>
+            <input id="account" type="text" name="name" class="form-control" placeholder="请输入账号">
+        </div>
+        <br>
+        <div class="input-group">
+            <span class="input-group-addon">密码</span>
+            <input id="passwd" type="password" name="passwd" class="form-control" placeholder="请输入密码">
+        </div>
+        <br>
+        <div style="margin: 0px auto;display: table;">
+        <div class="checkbox">
+        <label> <input type="checkbox">记住我 </label>
+
+        </div>
+            <div id="login111" class="bs-example">
+            <input id="mylogin" type="button" value="登陆">
+            </div>
+        </div>
+        <div id="login_ret"></div>
+    </form>
+
+</div>
+</div> -->
+
+    <!-- 底部信息 -->
+    <footer class='container-fluid foot-wrap'>
+      <div class='container'>
+        <center>
+            Powered by Jim Kent <span>&copy;</span> <span>
+            <script>document.write(new Date().getFullYear());</script></span>
+        </center>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="bootstrap/js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    
+</body>
+
+</html>

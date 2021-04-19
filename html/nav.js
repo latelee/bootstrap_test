@@ -1,0 +1,16 @@
+document.writeln("<header class=\'post-header\'>");
+document.writeln("	<center>");
+document.writeln("        <div class=\'contact-title\'>管理后台</div>");
+document.writeln("		<div class=\'contact-subtitle\'><p> bootstrap </p></div>");
+document.writeln("    </center>");
+document.writeln("</header>");
+document.writeln("");
+document.writeln("<div class=\'container\'>");
+document.writeln("    <div class=\'col-md-2\'>");
+document.writeln("    </div>");
+document.writeln("    <div class=\'col-md-8\'>");
+document.writeln("      <ul class=\'nav nav-tabs\'>");
+document.writeln("          <li><a class=\'link\' href=\'index.html\'>首页</a></li>");
+document.writeln("          <li><a class=\'link\' href=\'about.html\'>系统</a></li>");
+document.writeln("    </div>");
+document.writeln("</div>");

@@ -1,0 +1,19 @@
+{
+  "name": "foobar",
+  "version": "0.0.1",
+  "description": "hello world",
+  "main": "server.js",
+  "scripts": {
+    "test": "run.sh"
+  },
+  "author": "Late Lee",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "path": "^0.12.7",
+    "pm2": "^3.5.0"
+  }
+}
