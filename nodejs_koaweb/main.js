@@ -10,6 +10,8 @@ const SVR_PORT = 9000;
 
 let g_webServer = null;
 
+const staticPath = '../myui';
+
 function main()
 {
     var app = new Koa();
@@ -23,7 +25,7 @@ function main()
     }));
 
     // 设置主目录
-    const staticPath = '../html';
+    
     app.use(koastatic(path.join( __dirname, staticPath)));
 
     app.use(router.g_router.routes());

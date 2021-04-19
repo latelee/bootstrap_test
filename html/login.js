@@ -116,6 +116,7 @@ $('#mylogin').click(function(){
     //document.getElementById("login_ret").innerHTML = "failed111";
     // for test
     //parent.document.cookie = 'AxliF80Lp=' + "passwd"; //passwd; 
+    var passwd =$("#passwd").val();
     checkCookie()
     var str = $("#loginid").serialize()
     console.log("serial: ", str)

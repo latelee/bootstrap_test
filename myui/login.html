@@ -9,13 +9,15 @@
     <meta name="author" content="">
     <link rel="icon" href="bootstrap/favicon.ico">
 
-    <title>后台管理系统</title>
-
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="bootstrap/dashboard.css" rel="stylesheet">
+
+    <script src="assets/js/my.js"></script>
+
+    <title>后台管理系统</title>
 </head>
 
 <!-- 添加背景色 style="background-color: #dff0d8" -->
@@ -23,14 +25,14 @@
 
     <div class="container">
 <!--  添加灰色背景 -->
-<div class="text-center mt-5">
+<div class="text-center mt-2">
   <form id="loginid" class="form-signin" style="max-width:240px; margin:auto;">
     <h1 class="h3 mb-3 font-weight-normal">欢迎使用本系统 <br/>请登录</h2>
     <p>(本页面应有界面背景，或者logo图片) </p>
     <p>TODO：周边加一个框</p>
-    <input type="name" id="username" name="username" class="form-control" placeholder="账号" required autofocus>
+    <input type="name" id="username" name="username" class="form-control" placeholder="账号" value="admin" required autofocus>
     <div class="mt-3">
-    <input type="password" id="password" name="passwd" class="form-control" placeholder="密码" required>
+    <input type="password" id="passwd" name="passwd" class="form-control" placeholder="密码" value="admin" required>
     </div>
     <div class="checkbox">
       <label>
@@ -41,6 +43,7 @@
     <!-- 测试发现用 button url会出现参数，并且ajax传递参数有问题，用下面的可以，原因待研究 -->
     <!-- <button id="mylogin111" class="btn btn-lg btn-info btn-block">登录</button> -->
     <input id="mylogin" type="button" class="btn btn-lg btn-info btn-block" value="登陆">
+    <div id="login_ret"></div>
   </div>
   </form>
 </div>
@@ -107,6 +110,55 @@
     <script src="bootstrap/js/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     
+
+<script>
+$('#mylogin').click(function(){
+    var passwd =$("#passwd").val(); // 获取单个控件的值，还是此法
+
+    checkCookie()
+    
+    // 直接序列化，不一一读取了
+    // 示例：username=admin&passwd=admind
+    var str = $("#loginid").serialize()
+    //console.log("serial: ", str)
+    //return        
+    $.ajax({
+        cache: false,
+        type: "POST",
+        url: "login",
+        data: $("#loginid").serialize(), //旧法："account=" + account + "&passwd=" + passwd,
+        async: true,
+        error: function(request)
+        {
+            document.getElementById("login_ret").innerHTML = "failed111";
+            // for test
+            parent.document.cookie = 'AxliF80Lp=' + "passwd"; //passwd; 
+            //window.parent.window.location.href = "index.html"; // 回到首页
+            return;
+        },
+        // 应该是发送成功了，但不一定是真正的成功，还要看data的值
+        success: function(data)
+        {
+            document.getElementById("login_ret").innerHTML = data;
+            if (data == '0')
+            {
+                var base = new Base64();
+                passwd1 = base.encode(passwd);
+                for (var i = 0; i < passwd1.length; i++)
+                {
+                    passwd1[i] = (passwd1[i] + 0x1) % 64;
+                }
+                parent.document.cookie = 'AxliF80Lp=' + passwd1; //base.encode(passwd2); //passwd; 
+                window.parent.window.location.href = "index.html"; // 回到首页
+            }
+            else
+                window.parent.document.getElementById("login_ret").innerHTML = "账号或密码错误";
+        }
+    });
+})
+
+</script>
+
 </body>
 
 </html>
