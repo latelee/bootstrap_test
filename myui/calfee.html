@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="assets/favicon.ico">
+
+    
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="bootstrap/dashboard.css" rel="stylesheet">
+
+    <script src="assets/js/my.js"></script>
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <title>管理系统</title>
+  </head>
+
+  <body>
+
+    <!-- 顶部导航 -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">管理系统</a>
+        </div>
+        <!-- 右边-->
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">TODO</a></li>
+            <li><a href="#">退出</a></li>
+            <!-- <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li> -->
+          </ul>
+          <!-- <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+          -->
+        </div>
+      </div>
+
+    </nav>
+
+    <!-- 顶部下面的，包括左侧和右侧 -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">概览</a></li>
+            <li><a href="#">XX信息(TODO)</a></li>
+          </ul>
+          <!-- 另一栏了 -->
+          <ul class="nav nav-sidebar">
+            <li><a href="calfee.html">calfee</a></li>
+            <li><a href="">路径拟合(TODO)</a></li>
+            <li><a href="test.html">临时测试</a></li>
+          </ul>
+        </div>
+        
+        <!-- 右侧区域 -->
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        
+          <div class="row">
+            <!-- <h1 class="page-header">calfee在线版</h1> -->
+            <!-- <p>本页面调用 calfee 并返回计算结果</p> -->
+            <div class="well well-sm">本页面调用 calfee 并返回计算结果</div>
+          </div>
+
+          <div class="row">
+            <!-- <h2 class="page-header">输入栏</h2> -->
+
+            <form class="form-horizontal" id="calform" role="form">
+
+            <div class="form-group">
+              <label class="col-sm-1 control-label">车类</label>
+              <div class="col-sm-2">
+              <select class="form-control" name="vehicleClass" id="vehicleClass">
+                <option value="0" >普通车</option>
+                <option value="6" >公务车</option>
+                <option value="8" >军警车</option>
+                <option value="10" >紧急车</option>
+                <option value="12" >免费</option>
+                <option value="14" >车队</option>
+                <option value="21" >绿通车</option>
+                <option value="22" >联合收割机</option>
+                <option value="23" >抢险救灾</option>	
+                <option value="24" >集装箱车</option>
+                <option value="25" >大件运输</option>
+                <option value="26" >应急保障车</option>
+                <option value="27" >货车列车或半挂汽车列车</option>
+              </select>
+              </div>
+
+              <label class="col-sm-1">车辆状态标识</label>
+              <div class="col-sm-2">
+                <select class="form-control" name="vehicleStatusFlag" id="vehicleStatusFlag" >
+                  <option value="255" >默认</option>
+                  <option value="0" >本次通行用于大件运输</option>
+                  <option value="1" >非优惠车辆</option>
+                  <option value="2" >绿通车辆</option>
+                  <option value="3" >联合收割机车辆</option>
+                  <option value="4" >集装箱车辆</option>
+                </select>
+              </div>
+
+
+              <label class="col-sm-1 control-label">ETC卡类</label>
+              <div class="col-sm-2">
+                <select class="form-control" name="cardType" id="cardType" >
+                  <option value="0" >非双片式</option>
+                  <option value="23" selected>记账卡</option>
+                  <option value="22"  >储值卡</option>
+                  </select>
+              </div>
+              <label class="col-sm-1 control-label">车牌</label>
+              <div class="col-sm-2">
+              <input type="text" class="form-control" name="plate" id="plate" value= "京A12345">
+              </div>
+            </div> <!-- end of form-group -->
+            
+            <div class="form-group">
+              <label class="col-sm-1 control-label">车型</label>
+              <div class="col-sm-2">
+              <select class="form-control" name="vehicleType" id="vehicleType">
+                <option value="1" >一类客车</option>
+                <option value="2" >二类客车</option>
+                <option value="3" >三类客车</option>
+                <option value="4" >四类客车</option>
+                <option value="5" >五类客车</option>
+                <option value="6" >六类客车</option>
+                <option value="11" >一类货车</option>
+                <option value="12" >二类货车</option>
+                <option value="13" >三类货车</option>
+                <option value="14" >四类货车</option>
+                <option value="15" >五类货车</option>
+                <option value="16" >六类货车</option>
+                <option value="21" >一类作业车</option>
+                <option value="22" >二类作业车</option>
+                <option value="23" >三类作业车</option>
+                <option value="24" >四类作业车</option>
+                <option value="25" >五类作业车</option>
+                <option value="26" >六类作业车</option>
+              </select>
+              </div>
+
+              <label class="col-sm-1 control-label">卡类</label>
+              <div class="col-sm-2">
+                <select class="form-control" name="tagType" id="tagType" >
+                  <option value="0" >单片式标签</option>
+                  <option value="1"  selected>双片式ETC</option>
+                  <option value="2" >CPC卡</option>
+                  </select>
+              </div>
+
+              <label class="col-sm-1 control-label">轴数</label>
+              <div class="col-sm-2">
+              <input type="text" class="form-control" name="axleCount" id="axleCount" value= "2"">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label class="col-sm-1 control-label">入口</label>
+              <div class="col-sm-2">
+              <input type="text" class="form-control" name="ent" id="ent" value= "000133" rel="tooltip" title="支持门架HEX/ID、站代码">
+              </div>
+              <label class="col-sm-1 control-label">出口</label>
+              <div class="col-sm-2">
+              <input type="text" class="form-control" name="ext" id="ext" value = "000135" rel="tooltip" title="支持门架HEX/ID、站代码">
+              </div>
+
+              <label class="col-sm-1 control-label">入口时间</label>
+              <div class="col-sm-2">
+              <input type="text" class="form-control" name="enPassTime" id="enPassTime" value=  "{{ .entime }}" rel="tooltip" title="格式：2020-02-02T22:22:22">
+              </div>
+              <label class="col-sm-1 control-label">出口时间</label>
+              <div class="col-sm-2">
+              <input type="text" class="form-control" name="curPassTime" id="curPassTime" value=  "{{ .extime }}" rel="tooltip" title="格式：2020-02-02T22:22:22">
+              </div>
+            </div> <!-- end of form-group -->
+
+            <div class="form-group">
+              <label class="col-sm-4 control-label">途径门架HEX码（用"|"隔开）</label>
+              <div class="col-sm-8">
+              <input type="text" class="form-control" name="passhexlist" id="hexlist" rel="tooltip" title="功能待实现" placeholder="功能待实现">
+              </div>
+
+            </div> <!-- end of form-group -->
+
+            <div class="form-group">
+              <div class="col-sm-offset-1 col-sm-2">
+                <!-- <button type="submit" class="btn btn-default">开始计算1</button> -->
+                <input id="mycal" type="button" class="btn btn-lg btn-info btn-block" value="开始计算">
+              </div>
+            </div>
+
+            </form>
+
+
+          </div> <!-- end of row -->
+          
+
+          <div class="row">
+          <!-- <h2 class="sub-header">返回结果</h2> -->
+
+          收费信息：<p id="fee"><p><br>
+            版本信息：<br><p id="ver"><p>
+
+              <div id="timer"></div>
+
+
+
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Header</th>
+                  <th>Header</th>
+                  <th>Header</th>
+                  <th>Header</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1,001</td>
+                  <td>Lorem</td>
+                  <td>ipsum</td>
+                  <td>dolor</td>
+                  <td>sit</td>
+                </tr>
+                <tr>
+                  <td>1,002</td>
+                  <td>amet</td>
+                  <td>consectetur</td>
+                  <td>adipiscing</td>
+                  <td>elit</td>
+                </tr>
+                <tr>
+                  <td>1,003</td>
+                  <td>Integer</td>
+                  <td>nec</td>
+                  <td>odio</td>
+                  <td>Praesent</td>
+                </tr>
+                <tr>
+                  <td>1,003</td>
+                  <td>libero</td>
+                  <td>Sed</td>
+                  <td>cursus</td>
+                  <td>ante</td>
+                </tr>
+                <tr>
+                  <td>1,004</td>
+                  <td>dapibus</td>
+                  <td>diam</td>
+                  <td>Sed</td>
+                  <td>nisi</td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+          </div>
+        </div> <!-- 右侧区域 end-->
+      </div>
+    </div>
+
+
+    <!-- 底部信息 -->
+    <footer class='container-fluid foot-wrap'>
+      <div class='container'>
+        <center>
+            Powered by Jim Kent <span>&copy;</span> <span>
+            <script>document.write(new Date().getFullYear());</script></span>
+        </center>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="bootstrap/js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+      function appendZero (obj) {
+	      return lut = obj < 10 ? "0" + obj : obj 
+      }
+      
+			function current() {
+				var d = new Date(),
+        str = '';
+				str += d.getFullYear() + '-'; //获取当前年份 
+				str += appendZero(d.getMonth() + 1) + '-'; //获取当前月份（0——11） 
+				str += appendZero(d.getDate()) + 'T';
+				str += appendZero(d.getHours()) + ':';
+				str += appendZero(d.getMinutes()) + ':';
+				str += appendZero(d.getSeconds());
+				return str;
+			}
+			window.onload = function() {
+				document.getElementById("timer").innerHTML = current();
+			}
+
+      $('#mycal').click(function(){
+
+      // checkCookie()
+      
+      // 直接序列化，不一一读取了
+      // 示例：username=admin&passwd=admind
+      var str = $("#calform").serialize()
+      console.log("serial: ", str)
+      return        
+      $.ajax({
+          cache: false,
+          type: "POST",
+          url: "login",
+          data: $("#calform").serialize(),
+          async: true,
+          error: function(request)
+          {
+
+          },
+          success: function(data)
+          {
+
+          }
+      });
+    })
+    </script>
+
+  </body>
+</html>
