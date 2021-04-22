@@ -21,6 +21,76 @@ g_router.post("/login",async (ctx) => {
     ctx.body = body;
 });
 
+g_router.get("/calfee",async (ctx) => {
+    var body = {};
+
+    body = JSON.stringify({
+        code: 0,
+        msg: "OK",
+        count: 1,
+        data: 
+            {
+                "module": "4520210110004",
+                "fee": "4520210110004",
+                "struct": "20200320001",
+            }
+    });
+    ctx.body = body;
+});
+
+
+g_router.post("/calfee",async (ctx) => {
+    var body = {};
+
+    // 直接是json格式了
+    var param = ctx.request.body
+
+    console.log('got ', param)
+    console.log(param['vehicleClass'], param['vehicleStatusFlag'])
+
+    // body.code = 0
+    // body.msg = "OK"
+    // body.msg = 1
+    // body.data = ""
+    // console.log(body)
+
+    body = JSON.stringify({
+        code: 0,
+        msg: "OK",
+        count: 2,
+        data: [
+            {
+                'id': "G007245010000310010",
+                'distance': 32120,
+                'money': '15.88',
+                'gantry': '450300',
+                'node': '(A001, C3988)',
+                'discount': 98
+            },
+            {
+                'id': "G007245010000310011",
+                'distance': 100,
+                'money': '0.75',
+                'gantry': '450301',
+                'node': '(A001, C3989)',
+                'discount': 98
+            },
+            {
+                'id': "G007245010000310012",
+                'distance': 101,
+                'money': '1.65',
+                'gantry': '450302',
+                'node': '(A001, C3990)',
+                'discount': 98
+            }
+        ]
+    });
+    
+
+    ctx.body = body;
+});
+
+
 g_router.post("/data",async (ctx) => {
     var body = {};
     body['foo'] = {};
@@ -49,7 +119,6 @@ g_router.post("/pm2",async (ctx) => {
     var body = {};
 
     body = `hello world`;
-    ctx.body = body;
     
     pm2.list(function(err, processDescriptionList){
         //console.log(processDescriptionList);
@@ -213,6 +282,7 @@ g_router.post("/stat",async (ctx) => {
     }
     ctx.body = stat;
 });
+
 
 module.exports = {
     g_router,

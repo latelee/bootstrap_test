@@ -10,10 +10,11 @@
     <meta name="author" content="">
     <link rel="icon" href="assets/favicon.ico">
 
-    
-
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap table -->
+    <link rel="stylesheet" href="bootstrap-table/dist/bootstrap-table.min.css">
 
     <!-- Custom styles for this template -->
     <link href="bootstrap/dashboard.css" rel="stylesheet">
@@ -213,7 +214,13 @@
             <div class="form-group">
               <div class="col-sm-offset-1 col-sm-2">
                 <!-- <button type="submit" class="btn btn-default">开始计算1</button> -->
+                <input id="myver" type="button" class="btn btn-lg btn-info btn-block" value="获取版本号">
+                
+              </div>
+              <div class="col-sm-offset-1 col-sm-2">
+                <!-- <button type="submit" class="btn btn-default">开始计算1</button> -->
                 <input id="mycal" type="button" class="btn btn-lg btn-info btn-block" value="开始计算">
+                
               </div>
             </div>
 
@@ -222,69 +229,44 @@
 
           </div> <!-- end of row -->
           
-
           <div class="row">
           <!-- <h2 class="sub-header">返回结果</h2> -->
 
-          收费信息：<p id="fee"><p><br>
-            版本信息：<br><p id="ver"><p>
-
+              调试信息<br><p id="ret"><p></p>
               <div id="timer"></div>
 
+              <!-- 版本号表格 -->
+              <div class="row">
+              <div class="col-md-4">
+                <h3 class="sub-header">版本信息</h3>
+                <div class="table-responsive">
+                  <div id = "tabelver"> </div>
+                </div>
+              </div>
+              </div>
 
+                    <h3 class="sub-header">路径信息及费额</h3>
 
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                  <th>Header</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                </tr>
-                <tr>
-                  <td>1,002</td>
-                  <td>amet</td>
-                  <td>consectetur</td>
-                  <td>adipiscing</td>
-                  <td>elit</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>Integer</td>
-                  <td>nec</td>
-                  <td>odio</td>
-                  <td>Praesent</td>
-                </tr>
-                <tr>
-                  <td>1,003</td>
-                  <td>libero</td>
-                  <td>Sed</td>
-                  <td>cursus</td>
-                  <td>ante</td>
-                </tr>
-                <tr>
-                  <td>1,004</td>
-                  <td>dapibus</td>
-                  <td>diam</td>
-                  <td>Sed</td>
-                  <td>nisi</td>
-                </tr>
-                
-              </tbody>
-            </table>
-          </div>
-          </div>
+<!-- 注：预先设置渲染，在js中直接设置标题和数据即可 -->
+                      <table id="tabelfee" class="table-responsive table-striped"
+                      data-toolbar="#toolbar"
+  data-search="true"
+  data-show-toggle="true"
+  data-show-fullscreen="true"
+  data-show-columns="true"
+  data-show-columns-toggle-all="true"
+  data-show-export="true"
+  data-click-to-select="true"
+  data-detail-formatter="detailFormatter"
+  data-minimum-count-columns="2"
+  data-show-pagination-switch="true"
+  data-pagination="true"
+  data-page-list="[10, 25, 50, 100, all]"
+  data-show-footer="true"
+  data-response-handler="responseHandler">
+                      </table>
+          </div> <!-- end of row -->
+
         </div> <!-- 右侧区域 end-->
       </div>
     </div>
@@ -308,6 +290,10 @@
     <script src="bootstrap/js/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
 
+    <!-- bootstrap-table -->
+    <script src="bootstrap-table/dist/bootstrap-table.min.js"></script>
+    <script src="bootstrap-table/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+
     <script type="text/javascript">
       function appendZero (obj) {
 	      return lut = obj < 10 ? "0" + obj : obj 
@@ -328,7 +314,7 @@
 				document.getElementById("timer").innerHTML = current();
 			}
 
-      $('#mycal').click(function(){
+      $('#myver').click(function(){
 
       // checkCookie()
       
@@ -336,11 +322,11 @@
       // 示例：username=admin&passwd=admind
       var str = $("#calform").serialize()
       console.log("serial: ", str)
-      return        
+      // return        
       $.ajax({
           cache: false,
-          type: "POST",
-          url: "login",
+          type: "GET",
+          url: "calfee",
           data: $("#calform").serialize(),
           async: true,
           error: function(request)
@@ -349,10 +335,113 @@
           },
           success: function(data)
           {
+            var obj = JSON.parse(data);
+            console.log(obj.data.module);
+            document.getElementById("ret").innerHTML = data
+
+            // 直接用html组装表格，不方便，保留以作历史
+            var tabelver=`
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>模块名称</th>
+                  <th>版本字符串</th>
+                </tr>
+              </thead>
+              <tbody>
+                ` +
+                `<tr>
+                  <td>Module</td> <td>` +obj.data.module + `</td>
+                </tr>`
+                +
+                `<tr>
+                  <td>Fee</td> <td>` +obj.data.fee + `</td>
+                </tr>`
+                +
+                `<tr>
+                  <td>Struct</td> <td>` +obj.data.struct + `</td>
+                </tr>`
+                +
+              `
+              </tbody>
+            </table>`
+              document.getElementById("tabelver").innerHTML = tabelver
 
           }
       });
     })
+
+$('#mycal').click(function(){
+
+// checkCookie()
+
+var str = $("#calform").serialize()
+console.log("serial: ", str)
+// return        
+$.ajax({
+    cache: false,
+    type: "POST",
+    url: "calfee",
+    data: $("#calform").serialize(),
+    async: true,
+    error: function(request)
+    {
+
+    },
+    success: function(data)
+    {
+      var obj = JSON.parse(data);
+      console.log(obj.data);
+      // 注：服务端json的data字段，已经符合下面的格式，直接赋值即可
+      var data = obj.data
+    
+      $('#tabelfee').bootstrapTable({
+        data: data,
+        cache: false,
+        columns: [
+        {
+            field: 'id',
+            title: '路段',
+            align : 'center',
+            valign: 'middle'
+        },
+        {
+            field: 'distance',
+            title: '里程',
+            align : 'center',
+            valign: 'middle'
+        },
+        {
+            field: 'money',
+            title: '金额',
+            align : 'center',
+            valign: 'middle'
+        },
+        {
+            field: 'gantry',
+            title: '门架',
+            align : 'center',
+            valign: 'middle'
+        },
+        {
+            field: 'node',
+            title: '路径',
+            align : 'center',
+            valign: 'middle'
+        },
+        {
+            field: 'discount',
+            title: '折扣系数',
+            align : 'center',
+            valign: 'middle'
+        }
+        ]
+      })
+
+    }
+});
+})
+
     </script>
 
   </body>
